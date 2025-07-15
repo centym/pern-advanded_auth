@@ -47,6 +47,7 @@ app.use(cors({
       imgSrc: [
         "'self'",
         "data:",
+        "https://unsplash.com",
         "https://images.unsplash.com",
         "https://plus.unsplash.com"
       ],
