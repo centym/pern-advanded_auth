@@ -21,7 +21,7 @@ export const getProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   const { name, price, image } = req.body;
-  console.log("createProduct function called with body:", req.body);
+  //console.log("createProduct function called with body:", req.body);
   if (!name || !price || !image) {
     return res.status(400).json({ success: false, message: "All fields are required" });
   }
@@ -47,12 +47,12 @@ export const createProduct = async (req, res) => {
 export const getProduct = async (req, res) => {
   const { id } = req.params;
 
-  console.log("getProduct function called with ID:", id);
+  //console.log("getProduct function called with ID:", id);
   if (!id || id.trim() === "check-auth") {
     console.log("Product ID is missing or invalid");
     return res.status(400).json({ success: false, message: "Product ID is required" });
   }
-  console.log("Fetching product with ID:", id);
+  //console.log("Fetching product with ID:", id);
   //console.log("req.params", req.params);
   //console.log("req.body", req.body);
   //console.log("req.query", req.query);
@@ -62,7 +62,7 @@ export const getProduct = async (req, res) => {
     const product = await sql`
      SELECT * FROM products WHERE id=${id}
     `;
-    console.log("Fetched product", product[0]);
+    //console.log("Fetched product", product[0]);
     const base64Image = btoa(String.fromCharCode(...new Uint8Array(product[0].image_base24))); //.toString("base64");
     //res.status(200).json({
     //  success: true,

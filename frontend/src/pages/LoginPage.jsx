@@ -19,7 +19,7 @@ const LoginPage = ({onLogin}) => {
         try {
             await login(email, password);
 			onLogin(); // Call the onLogin prop to update the auth state
-			console.log("Login successful");
+			//console.log("Login successful");
             navigate("/product/producthome"); // Redirect to Dashboard after successful login
         } catch (error) {
             console.error("Login failed", error);

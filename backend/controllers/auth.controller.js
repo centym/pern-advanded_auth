@@ -253,7 +253,7 @@ export const resetPassword = async (req, res) => {
 		if (updateUsers.length === 0) {
 			return res.status(400).json({ success: false, message: "User not found" });
 		}
-		console.log("updateUsers ", updateUsers);
+		//console.log("updateUsers ", updateUsers);
 
 
 		await sendResetSuccessEmail(user[0].email);
@@ -268,7 +268,7 @@ export const resetPassword = async (req, res) => {
 export const checkAuth = async (req, res) => {
 	try {
 		//const user = await User.findById(req.userId).select("-password");
-		console.log('checkAuth ');
+		//console.log('checkAuth ');
 		const user = await sql`SELECT * FROM users WHERE id = ${req.userId}`;		
 		//const user = null
 		if (!user) {

@@ -25,7 +25,7 @@ import { useEffect, useState} from "react";
 
 
 
-console.log('VITE_API_URL',import.meta.env.VITE_API_URL);
+//console.log('VITE_API_URL',import.meta.env.VITE_API_URL);
 
 // protect routes that require authentication
 const ProtectedRoute = ({ children }) => {

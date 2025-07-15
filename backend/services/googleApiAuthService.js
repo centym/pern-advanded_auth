@@ -119,7 +119,7 @@ export async function authorize() {
                         //console.log('Access Token:', tokens.tokens.access_token);
                         //console.log('Refresh Token:', tokens.tokens.refresh_token); // <--- ICI !
                         //console.log('Token Expiry integer:', tokens.tokens.expiry_date);
-                        console.log('Token Expiry Date:', Date(tokens.tokens.expiry_date));
+                        //console.log('Token Expiry Date:', Date(tokens.tokens.expiry_date));
                         tokens_returned = tokens.tokens.refresh_token;
 
 
@@ -133,7 +133,7 @@ export async function authorize() {
 
                         res.end('Authentication successful! Please return to the console. Close this tab or Nagigateur');
                         await fs.promises.writeFile(TOKEN_PATH, tokens_returned);
-                        console.log('Tokens stored to', TOKEN_PATH);
+                        //console.log('Tokens stored to', TOKEN_PATH);
                 
                         server.destroy();
                        // return tokens.tokens.access_token;
