@@ -13,8 +13,10 @@ import destroyer from 'server-destroy';
 
 const SCOPE = ['https://www.googleapis.com/auth/gmail.readonly'];
 // This is the path to the token file that stores the user's access and refresh tokens
-const TOKEN_PATH = path.join(process.cwd(), './backend/credentials/token.json');
-const CREDENTIALS_PATH = path.join(process.cwd(), './backend/credentials/credentials.json');
+//const TOKEN_PATH = path.join(process.cwd(), './backend/credentials/token.json');
+//const CREDENTIALS_PATH = path.join(process.cwd(), './backend/credentials/credentials.json');
+const TOKEN_PATH = path.join(process.cwd(), './token.json');
+const CREDENTIALS_PATH = path.join(process.cwd(), './credentials.json');
 
 // Read the credentials file
 export async function readCredentials() {
