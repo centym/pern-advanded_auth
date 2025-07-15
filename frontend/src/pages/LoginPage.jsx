@@ -4,8 +4,10 @@ import { Mail, Lock, Loader } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import { useAuthStore } from "../store/authStore";
+import { useTranslation } from 'react-i18next';
 
-const LoginPage = () => {
+const LoginPage = ({onLogin}) => {
+
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
     const navigate = useNavigate(); // Initialize useNavigate
@@ -16,11 +18,14 @@ const LoginPage = () => {
 		e.preventDefault();
         try {
             await login(email, password);
+			onLogin(); // Call the onLogin prop to update the auth state
+			console.log("Login successful");
             navigate("/product/producthome"); // Redirect to Dashboard after successful login
         } catch (error) {
             console.error("Login failed", error);
         }
 	};
+	const { t } = useTranslation();
 
 	return (
 		<motion.div
@@ -31,14 +36,14 @@ const LoginPage = () => {
 		>
 			<div className='p-8'>
 				<h2 className='text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text'>
-					Bienvenue Omega
+					{t('tr: Welcome')}
 				</h2>
 
 				<form onSubmit={handleLogin}>
 					<Input
 						icon={Mail}
 						type='email'
-						placeholder='Email Address'
+						placeholder={t('tr: Email Address')}
 						autoComplete='email'
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}

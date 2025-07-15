@@ -19,8 +19,9 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 import LoadingSpinner from "./components/LoadingSpinner";
 import { useAuthStore } from "./store/authStore";
-import { useEffect } from "react";
+import { useEffect, useState} from "react";
 
+//import i18n from './utils/i18n';
 
 
 
@@ -61,6 +62,11 @@ function App() {
 //	const { isCheckingAuth, checkAuth } = useAuthStore();
 	const { isCheckingAuth, checkAuth, isAuthenticated, user } = useAuthStore();
 
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+	const handleLogin = () => setIsLoggedIn(true);
+	const handleLogout = () => setIsLoggedIn(false);
+
 
 	useEffect(() => {
 		checkAuth(isAuthenticated);
@@ -70,7 +76,7 @@ function App() {
   
   return (
     <div className="min-h-screen bg-base-200 transition-colors duration-300" data-theme={theme}>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 
       <Routes>
         <Route path="/product/:id" element={<ProtectedRoute><ProductPage /></ProtectedRoute>} />
@@ -95,7 +101,7 @@ function App() {
 					path='/login'
 					element={
 						<RedirectAuthenticatedUser>
-							<LoginPage />
+							<LoginPage onLogin={handleLogin} />
 						</RedirectAuthenticatedUser>
 					}
 				/>

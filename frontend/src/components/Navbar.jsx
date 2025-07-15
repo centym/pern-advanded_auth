@@ -1,50 +1,75 @@
 import { Link, useResolvedPath } from "react-router-dom";
+//import { useState } from "react"; 
 import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useProductStore } from "../store/useProductStore";
 import { useAuthStore } from "../store/authStore";
+//import i18n from '../utils/i18n';
+import { useTranslation } from 'react-i18next';
 
-function Navbar() {
+
+
+function Navbar({ isLoggedIn, onLogout }) {
   const { pathname } = useResolvedPath();
   const isHomePage = pathname === "/";
+
+  //const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const { products } = useProductStore();
 
   const { user, logout } = useAuthStore();
   const handleLogout = () => {
 		logout();
+    onLogout(); // Call the onLogout prop to update the auth state
+    // Optionally redirect to home or login page after logout
+    // window.location.href = '/login'; // Uncomment if you want to redirect
 	};
+  
+  const { i18n } = useTranslation();
+  const changeLanguage = (event) => {
+      i18n.changeLanguage(event.target.value);
+    };
+
+  
+  const { t } = useTranslation();
+ 
 
   return (
     <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="navbar px-4 min-h-[4rem] justify-between">
+      {/*<div className="max-w-7xl mx-auto"> */}
+      <div className="w-full  mx-auto ">
+        <div className="navbar px-4 min-h-[4rem] justify-between ">
           {/* LOGO */}
-          <div className="flex-1 lg:flex-none">
+          <div className="flex lg:flex-none s">
             <Link to="/" className="hover:opacity-80 transition-opacity">
-              <div className="flex items-center gap-2">
-                <ShoppingCartIcon className="size-9 text-primary" />
+              <div className="flex items-center gap-2 ">
+                <ShoppingCartIcon className="size-3 text-primary" />
                 <span
-                  className="font-semibold font-mono tracking-widest text-2xl 
+                  className="font-semibold font-mono tracking-widest  
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
                 >
-                  POSGRESTORE
+                  React
                 </span>
               </div>
             </Link>
           </div>
 
           {/* RIGHT SECTION */}
-          <div className="flex items-center gap-4">
-          <Link to={`/login`} className="btn btn-sm btn-info btn-outline">
-            Login
-          </Link>
-          <button
-            className="btn btn-sm btn-error  btn-outline"
-            onClick={() => handleLogout()}
+          <div className="flex items-center gap-2 ">
+          <select
+            value={i18n.language}
+            onChange={changeLanguage}
+            className="btn btn-xs btn-outline btn-primary mr-2"
           >
-            Logout
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+          </select>
+          
+          <button className="btn btn-xs btn-outline btn-primary mr-2"
+            onClick={isLoggedIn ? handleLogout : () => {}}>
+            {isLoggedIn ? t('tr: Logout') : t('tr: Login')}
           </button>
+
             <ThemeSelector />
 
             {isHomePage && (

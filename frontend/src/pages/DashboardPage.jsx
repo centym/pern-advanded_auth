@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { useAuthStore } from "../store/authStore";
 import { formatDate } from "../utils/date";
+import { useTranslation } from 'react-i18next';
 
 const DashboardPage = () => {
 	const { user, logout } = useAuthStore();
+	const { t } = useTranslation();
 
 	const handleLogout = () => {
 		logout();

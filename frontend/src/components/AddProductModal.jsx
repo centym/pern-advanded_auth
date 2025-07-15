@@ -1,8 +1,10 @@
 import { DollarSignIcon, ImageIcon, Package2Icon, PlusCircleIcon } from "lucide-react";
 import { useProductStore } from "../store/useProductStore";
+import { useTranslation } from 'react-i18next';
 
 function AddProductModal() {
   const { addProduct, formData, setFormData, loading } = useProductStore();
+  const { t } = useTranslation();
 
   return (
     <dialog id="add_product_modal" className="modal">
@@ -13,7 +15,7 @@ function AddProductModal() {
         </form> {/* </form> */}
 
         {/* MODAL HEADER */}
-        <h3 className="font-bold text-xl mb-8">Add New Product</h3>
+        <h3 className="font-bold text-xl mb-8">{t('Add New Product')}</h3>
 
         <form  onSubmit={addProduct} className="space-y-6"> {/* form */}
           <div className="grid gap-6">

@@ -1,0 +1,19 @@
+{
+        "Language": "Français",
+        "tr: welcome": "bienvenue",
+        "tr: Welcome": "Bienvenue Omega",
+        "tr: Add New Product": "Ajouter un nouveau produit",
+        "tr: Add Product": "Ajouter un produit",
+        "tr: Product Name": "Nom du produit",
+        "tr: Français": "Français",
+        "tr: English": "English",
+        "tr: Logout": "Déconnexion", 
+        "tr: Login": "Connexion",
+        "tr: Email Address": "Adresse e-mail",
+        "tr: Confirm": "Confirmer",
+        "tr: At least 6 characters": "Au moins 6 caractères",
+        "tr: Are you sure you want to delete this item?": "Êtes-vous sûr de vouloir supprimer cet élément ?" ,
+        "tr: tm_product_upd_successful": "Produit mis à jour avec succès",
+        "tr: tm_product_upd_error": "*** ERREUR *** : Produit non mis à jour"
+
+}

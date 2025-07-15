@@ -3,11 +3,11 @@ import { useProductStore } from "../store/useProductStore";
 import { PackageIcon, PlusCircleIcon, RefreshCwIcon } from "lucide-react";
 import ProductCard from "../components/ProductCard";
 import AddProductModal from "../components/AddProductModal";
-
+import { useTranslation } from 'react-i18next';
 
 function ProductHomePage() {
   const { products, loading, error, fetchProducts } = useProductStore();
-
+  const { t } = useTranslation();
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts]);
@@ -20,7 +20,7 @@ function ProductHomePage() {
           onClick={() => document.getElementById("add_product_modal").showModal()}
         >
           <PlusCircleIcon className="size-5 mr-2" />
-          Add Product
+          {t('tr: Add Product')}
         </button>
         <button className="btn btn-ghost btn-circle" onClick={fetchProducts}>
           <RefreshCwIcon className="size-5" />

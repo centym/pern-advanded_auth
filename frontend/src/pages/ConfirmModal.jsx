@@ -1,8 +1,10 @@
 import React from "react";
 import { CircleHelp } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 function ConfirmModal({ open, message, onConfirm, onCancel }) {
   if (!open) return null;
+  const { t } = useTranslation();
 
   return (
     <div id="confirm-modal" style={styles.overlay}>
@@ -13,7 +15,7 @@ function ConfirmModal({ open, message, onConfirm, onCancel }) {
         </div>
 
         <div style={{ marginTop: 16 }}>
-          <button onClick={onConfirm} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition" style={styles.button}>Confirmer</button>
+          <button onClick={onConfirm} className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700 transition" style={styles.button}>{t('tr: Confirm')}</button>
           <button onClick={onCancel} className="px-4 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition" style={styles.button}>Annuler</button>
         </div>
       </div>

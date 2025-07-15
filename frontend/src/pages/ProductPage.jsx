@@ -3,6 +3,7 @@ import { useProductStore } from "../store/useProductStore";
 import { useEffect, useState } from "react";
 import { ArrowLeftIcon, SaveIcon, Trash2Icon } from "lucide-react";
 import ConfirmModal from "./ConfirmModal";
+import { useTranslation } from 'react-i18next';
 
 //import fetch from "node-fetch"; // Ensure you have node-fetch installed
 
@@ -21,6 +22,7 @@ function ProductPage() {
   const { id } = useParams();
 
   const [modalOpen, setModalOpen] = useState(false);
+  const { t } = useTranslation();
     
 
   useEffect(() => {
@@ -55,7 +57,7 @@ function ProductPage() {
       <div>
           <ConfirmModal
             open={modalOpen}
-            message="Êtes-vous sûr de vouloir supprimer cet élément ?"
+            message={t('tr: Are you sure you want to delete this item?')}
             onConfirm={() => {
               deleteProduct(id);
               setModalOpen(false);
@@ -91,7 +93,10 @@ function ProductPage() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                updateProduct(id);
+                updateProduct(id, 
+                  t('tr: tm_product_upd_successful'),
+                  t('tr: tm_product_upd_error'),
+                );
               }}
               className="space-y-6"
             >

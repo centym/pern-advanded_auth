@@ -1,8 +1,10 @@
 import { Check, X } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
 const PasswordCriteria = ({ password }) => {
+	const { t } = useTranslation();
 	const criteria = [
-		{ label: "At least 6 characters", met: password.length >= 6 },
+		{ label: t('tr: At least 6 characters'), met: password.length >= 6 },
 		{ label: "Contains uppercase letter", met: /[A-Z]/.test(password) },
 		{ label: "Contains lowercase letter", met: /[a-z]/.test(password) },
 		{ label: "Contains a number", met: /\d/.test(password) },

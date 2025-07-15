@@ -2,6 +2,7 @@ import { create } from "zustand";
 import axios from "axios";
 import toast from "react-hot-toast";
 
+
 // base url will be dynamic depending on the environment
 const BASE_URL = import.meta.env.MODE === "development" ? "http://localhost:3000/api" : "/api";
 
@@ -26,8 +27,8 @@ export const useProductStore = create((set, get) => ({
     e.preventDefault();
     set({ loading: true });
 
-
     try {
+
       const { formData } = get();
       //console.log("addProduct function called", {BASE_URL});
       await axios.post(`${BASE_URL}/product`, formData);
@@ -45,6 +46,7 @@ export const useProductStore = create((set, get) => ({
 
   fetchProducts: async () => {
     set({ loading: true });
+    
     try {
       const response = await axios.get(`${BASE_URL}/product/producthome`);
       set({ products: response.data.data, error: null });
@@ -62,7 +64,7 @@ export const useProductStore = create((set, get) => ({
     try {
       await axios.delete(`${BASE_URL}/product/${id}`);
       set((prev) => ({ products: prev.products.filter((product) => product.id !== id) }));
-      toast.success("Product deleted successfully");
+      toast.success(t('tr: Product deleted successfully'));
     } catch (error) {
       console.log("Error in deleteProduct function", error);
       toast.error("Something went wrong");
@@ -87,15 +89,17 @@ export const useProductStore = create((set, get) => ({
       set({ loading: false });
     }
   },
-  updateProduct: async (id) => {
+  updateProduct: async (id, tmupd_succesfull,tmupd_error) => {
     set({ loading: true });
+    
     try {
       const { formData } = get();
       const response = await axios.put(`${BASE_URL}/product/${id}`, formData);
       set({ currentProduct: response.data.data });
-      toast.success("Product updated successfully");
+      //const tm = t('tr: Product updated successfully')
+      toast.success(tmupd_succesfull);
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error(tmupd_error);
       console.log("Error in updateProduct function", error);
     } finally {
       set({ loading: false });
