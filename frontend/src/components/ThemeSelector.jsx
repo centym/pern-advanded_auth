@@ -2,15 +2,16 @@ import { PaletteIcon } from "lucide-react";
 import { THEMES } from "../constants";
 import { useThemeStore } from "../store/useThemeStore";
 
+
 function ThemeSelector() {
   const { theme, setTheme } = useThemeStore();
 
   return (
-    <div className="dropdown dropdown-end">
+    <div className="dropdown dropdown-end ">
       {/* DROPDOWN TRIGGER */}
 
-      <button tabIndex={0} className="btn btn-ghost btn-circle">
-        <PaletteIcon className="size-5" />
+      <button tabIndex={0} className="flex btn-sm items-center justify-center btn-ghost btn-circle shadow-[0_2px_8px_0_rgba(255,255,255,0.8)]">
+             <PaletteIcon className="size-5 " />
       </button>
 
       <div

@@ -1,6 +1,6 @@
 import { Link, useResolvedPath } from "react-router-dom";
 //import { useState } from "react"; 
-import { ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
+import { ShoppingBagIcon, ShoppingCartIcon, LogOut } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useProductStore } from "../store/useProductStore";
 import { useAuthStore } from "../store/authStore";
@@ -59,7 +59,7 @@ function Navbar({ isLoggedIn, onLogout }) {
           <select
             value={i18n.language}
             onChange={changeLanguage}
-            className="btn btn-xs btn-outline btn-primary mr-2"
+            className="btn btn-xs btn-outline btn-primary mr-3"
           >
               <option value="en">English</option>
               <option value="fr">Français</option>
@@ -67,13 +67,10 @@ function Navbar({ isLoggedIn, onLogout }) {
           
           <button className="btn btn-xs btn-outline btn-primary mr-2"
             onClick={isLoggedIn ? handleLogout : () => {}}>
-            {isLoggedIn ? t('tr: Logout') : t('tr: Login')}
+            <LogOut className="inline size-4 ml-1" />
+
           </button>
-
-            <ThemeSelector />
-
-            
-              <div className="indicator">
+              <div className="indicator mr-2">
                 <div className=" rounded-full hover:bg-base-200 transition-colors">
                   <ShoppingBagIcon className="size-5" />
                   <span className="badge badge-sm badge-primary indicator-item">
@@ -81,7 +78,9 @@ function Navbar({ isLoggedIn, onLogout }) {
                   </span>
                 </div>
               </div>
-            
+              
+              <ThemeSelector />
+
           </div>
         </div>
       </div>
