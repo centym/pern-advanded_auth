@@ -93,20 +93,20 @@ function Navbar({ isLoggedIn, onLogout }) {
                       
                         key={options.value}
                         value={options.value}
-                        className="px-6 py-2 bg-white hover:bg-gray-400 cursor-pointer"
+                        className=" bg-gray-300 hover:bg-gray-400 border cursor-pointer"
                         onClick={() => console.log(options.value)}
                       >
 
                         <button
                           key={options.value}
                           value={options.value}
-                          className="w-full px-1 py-3 rounded-xl flex items-center gap-3 transition-colors"
+                          className=" py-2 w-24 text-black rounded-xl flex items-center  "
                           onClick={() => { selectOption(options.value); changeLanguage(options.value)}}
                         > 
                           <img
                             src={options.icon}
                             alt={options.label}
-                            className="h-6 w-6 rounded-full mr-1 "
+                            className="h-6 w-6 rounded-full mr-2 "
                           />
                           {options.label}
                           
