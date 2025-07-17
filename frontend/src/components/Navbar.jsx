@@ -76,11 +76,11 @@ function Navbar({ isLoggedIn, onLogout }) {
 
           
     
-          <div className="dropdown dropdown-end  h-6 gap-2">
+          <div className="dropdown dropdown-end  h-10 gap-2">
                <button onClick={toggleDropdown} 
-                      className="btn btn-xs btn-outline btn-primary  mr-4 px-2  pr-0"   >
+                      className="btn btn-xs btn-outline btn-primary  mr-6 px-2  pr-0 inline size-14"   >
                         <img  src={`/locales/flags/${i18n.language}.svg`} alt="Language" 
-                          className="h-6 w-6 rounded-full mr-2" />
+                          className="h-8 w-14 rounded-full mr-2" />
 
               </button>
               {isOpen && (
