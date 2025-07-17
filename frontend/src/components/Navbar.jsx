@@ -1,6 +1,6 @@
 import { Link, useResolvedPath } from "react-router-dom";
 //import { useState } from "react"; 
-import { ShoppingBagIcon, ShoppingCartIcon, LogOut } from "lucide-react";
+import { ShoppingBagIcon, ShoppingCartIcon, LogOut, Flag } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useProductStore } from "../store/useProductStore";
 import { useAuthStore } from "../store/authStore";
@@ -79,12 +79,12 @@ function Navbar({ isLoggedIn, onLogout }) {
           <div className="relative flex    w-full justify-end items-center gap-2">
                <button 
                       onClick={toggleDropdown} 
-                      className="btn  btn-xs btn-primary "   >
-                        {i18n.language}
-
+                      className="btn  btn-xs btn-outline btn-primary "   >
+                        <Flag className=" size-4" />
+                        <img  src={`/locales/flags/${i18n.language}.svg`} alt="Language" 
+                          className="h-6 w-6 rounded-full mr-2" />
               </button>
-              <img  src={`/locales/flags/${i18n.language}.svg`} alt="Language" 
-                          className="h-8 w-8 rounded-full mr-2" />
+
               {isOpen && (
                  <div className="absolute top-full left-0 mt-1 bg-white">
                 <ul className="   pl-0 bg-blue border rounded shadow">
@@ -123,7 +123,7 @@ function Navbar({ isLoggedIn, onLogout }) {
    
          
           
-          <button className="btn btn-xs btn-outline btn-primary mr-2"
+          <button className="btn btn-xs btn-outline btn-primary "
             onClick={isLoggedIn ? handleLogout : () => {}}>
             <LogOut className="inline size-4 ml-1" />
 
