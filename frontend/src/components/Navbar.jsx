@@ -6,8 +6,7 @@ import { useProductStore } from "../store/useProductStore";
 import { useAuthStore } from "../store/authStore";
 //import i18n from '../utils/i18n';
 import { useTranslation } from 'react-i18next';
-
-
+import { useState} from 'react';
 
 function Navbar({ isLoggedIn, onLogout }) {
   const { pathname } = useResolvedPath();
@@ -26,15 +25,29 @@ function Navbar({ isLoggedIn, onLogout }) {
 	};
   
   const { i18n } = useTranslation();
-  const changeLanguage = (event) => {
-      i18n.changeLanguage(event.target.value);
+  const changeLanguage = (value) => {
+      i18n.changeLanguage(value);
     };
 
   
   const { t } = useTranslation();
  
+  const options = [
+    { value: "fr", label: "Français", icon: "/locales/flags/fr.svg" },
+    { value: "en", label: "English", icon: "/locales/flags/gb.svg" },
+  ];
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState(options[0]);
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const selectOption = (option) => {
+    setSelected(option);
+    setIsOpen(false); // <— Ferme le menu ici
+  };
+  
 
   return (
+    
     <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 sticky top-0 z-50">
       {/*<div className="max-w-7xl mx-auto"> */}
       <div className="w-full  mx-auto ">
@@ -55,21 +68,64 @@ function Navbar({ isLoggedIn, onLogout }) {
           </div>
 
           {/* RIGHT SECTION */}
-          <div className="flex items-center gap-2 ">
-          <select
-            value={i18n.language}
-            onChange={changeLanguage}
-            className="btn btn-xs btn-outline btn-primary mr-3"
-          >
-              <option value="en">English</option>
-              <option value="fr">Français</option>
-          </select>
+
+          <div className="flex items-center gap-3 ">
+           
+    
+
+
+          
+    
+          <div className="dropdown dropdown-end  h-6 gap-2">
+               <button onClick={toggleDropdown} 
+                      className="btn btn-xs btn-outline btn-primary  mr-4 px-2  pr-0"   >
+                        <img  src={`/locales/flags/${i18n.language}.svg`} alt="Language" 
+                          className="h-6 w-6 rounded-full mr-2" />
+
+              </button>
+              {isOpen && (
+                <ul className="dropdown-content  z-10 bg-blue border rounded shadow">
+                    {options.map((options) => (
+                      <li
+                      
+                        key={options.value}
+                        value={options.value}
+                        className="px-4 py-2 bg-white hover:bg-black cursor-pointer"
+                        onClick={() => console.log(options.value)}
+                      >
+
+                        <button
+                          key={options.value}
+                          value={options.value}
+                          className="w-full px-1 py-3 rounded-xl flex items-center gap-3 transition-colors"
+                          onClick={() => { selectOption(options.value); changeLanguage(options.value)}}
+                        >
+                          <img
+                            src={options.icon}
+                            alt={options.label}
+                            className="h-6 w-6 rounded-full mr-8"
+                          />
+           
+                          
+
+                        </button>
+
+                      </li>
+                    ))}
+                  </ul>
+                )}
+            </div>
+          
+   
+         
           
           <button className="btn btn-xs btn-outline btn-primary mr-2"
             onClick={isLoggedIn ? handleLogout : () => {}}>
             <LogOut className="inline size-4 ml-1" />
 
           </button>
+
+          
               <div className="indicator mr-2">
                 <div className=" rounded-full hover:bg-base-200 transition-colors">
                   <ShoppingBagIcon className="size-5" />
