@@ -1,12 +1,13 @@
 import { Link, useResolvedPath } from "react-router-dom";
 //import { useState } from "react"; 
-import { ShoppingBagIcon, ShoppingCartIcon, LogOut, Flag } from "lucide-react";
+import { ShoppingBagIcon, LogOut, FlagIcon, LucideMenu } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import { useProductStore } from "../store/useProductStore";
 import { useAuthStore } from "../store/authStore";
 //import i18n from '../utils/i18n';
 import { useTranslation } from 'react-i18next';
 import { useState} from 'react';
+import Menu from "./Menu";
 
 function Navbar({ isLoggedIn, onLogout }) {
   const { pathname } = useResolvedPath();
@@ -50,18 +51,24 @@ function Navbar({ isLoggedIn, onLogout }) {
     
     <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 sticky top-0 z-50">
       {/*<div className="max-w-7xl mx-auto"> */}
+      
       <div className="w-full  mx-auto ">
+     
         <div className="navbar px-4 min-h-[4rem] justify-between ">
+        
           {/* LOGO */}
           <div className="flex lg:flex-none s">
-            <Link to="/" className="hover:opacity-80 transition-opacity">
+            {/* Hamburger Menu Icon */}
+            <Menu className="size-3 text-primary"/>
+
+            <Link to="/" className="hover:opacity-70 transition-opacity">
               <div className="flex items-center gap-2 ">
-                <ShoppingCartIcon className="size-3 text-primary" />
+                
                 <span
                   className="font-semibold font-mono tracking-widest  
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
                 >
-                  React
+                  Dashboard - React
                 </span>
               </div>
             </Link>
@@ -80,7 +87,7 @@ function Navbar({ isLoggedIn, onLogout }) {
                <button 
                       onClick={toggleDropdown} 
                       className="btn  btn-xs btn-outline btn-primary "   >
-                        <Flag className=" size-4" />
+                        <FlagIcon className=" size-4" />
                         <img  src={`/locales/flags/${i18n.language}.svg`} alt="Language" 
                           className="h-6 w-6 rounded-full mr-2" />
               </button>
