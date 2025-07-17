@@ -69,28 +69,31 @@ function Navbar({ isLoggedIn, onLogout }) {
 
           {/* RIGHT SECTION */}
 
-          <div className="flex items-center gap-3 ">
+          <div className="flex items-center gap-3  ">
            
     
 
 
           
     
-          <div className="dropdown dropdown-end  h-10 gap-2">
-               <button onClick={toggleDropdown} 
-                      className="btn btn-xs btn-outline btn-primary  mr-6 px-2  pr-0 inline size-14"   >
-                        <img  src={`/locales/flags/${i18n.language}.svg`} alt="Language" 
-                          className="h-8 w-14 rounded-full mr-2" />
+          <div className="relative flex    w-full justify-end items-center gap-2">
+               <button 
+                      onClick={toggleDropdown} 
+                      className="btn  btn-xs btn-primary "   >
+                        {i18n.language}
 
               </button>
+              <img  src={`/locales/flags/${i18n.language}.svg`} alt="Language" 
+                          className="h-8 w-8 rounded-full mr-2" />
               {isOpen && (
-                <ul className="dropdown-content  z-10 bg-blue border rounded shadow">
+                 <div className="absolute top-full left-0 mt-1 bg-white">
+                <ul className="   pl-0 bg-blue border rounded shadow">
                     {options.map((options) => (
                       <li
                       
                         key={options.value}
                         value={options.value}
-                        className="px-4 py-2 bg-white hover:bg-black cursor-pointer"
+                        className="px-6 py-2 bg-white hover:bg-gray-400 cursor-pointer"
                         onClick={() => console.log(options.value)}
                       >
 
@@ -99,13 +102,13 @@ function Navbar({ isLoggedIn, onLogout }) {
                           value={options.value}
                           className="w-full px-1 py-3 rounded-xl flex items-center gap-3 transition-colors"
                           onClick={() => { selectOption(options.value); changeLanguage(options.value)}}
-                        >
+                        > 
                           <img
                             src={options.icon}
                             alt={options.label}
-                            className="h-6 w-6 rounded-full mr-8"
+                            className="h-6 w-6 rounded-full mr-1 "
                           />
-           
+                          {options.label}
                           
 
                         </button>
@@ -113,6 +116,7 @@ function Navbar({ isLoggedIn, onLogout }) {
                       </li>
                     ))}
                   </ul>
+                  </div>
                 )}
             </div>
           
