@@ -30,7 +30,7 @@ const styles = {
     zIndex: 1000
   },
   modal: {
-    background: "#fff", padding: 24, borderRadius: 8, minWidth: 500, textAlign: "center",
+    background: "#fff", padding: 24, borderRadius: 8, textAlign: "center",
     boxShadow: "0 2px 8px rgba(0,0,0,0.2)"
   },
   button: {
