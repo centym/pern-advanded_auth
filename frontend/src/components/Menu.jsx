@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LucideMenu , XIcon} from "lucide-react";
-
+import { Link } from "react-router-dom";
 function Sidebar({ isOpen, onClose }) {
  
     return (
@@ -28,22 +28,29 @@ function Sidebar({ isOpen, onClose }) {
             {/* Liens de navigation de la sidebar */}
             <nav className="mt-6 ">
               <ul>
-                <li className="mb-4  hover:text-blue-600 hover:bg-gray-400">
-                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
-                    Accueil
-                  </a>
+                <li className="mb-4 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
+                  <Link to="/" onClick={onClose} className="hover:opacity-70 transition-opacity">
+                    <div className="flex items-center gap-2 ">
+                        <span
+                            className="font-semibold font-mono tracking-widest  
+                                    bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+                        >
+                            React
+                        </span>
+                    </div>
+                  </Link>
                 </li>
-                <li className="mb-4  hover:text-blue-600 hover:bg-gray-400">
+                <li className="mb-4 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
                   <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
                     À propos
                   </a>
                 </li>
-                <li className="mb-4  hover:text-blue-600 hover:bg-gray-400">
+                <li className="mb-4 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
                   <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
                     Services
                   </a>
                 </li>
-                <li className="mb-4  hover:text-blue-600 hover:bg-gray-400">
+                <li className="mb-4 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
                   <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
                     Contact
                   </a>
