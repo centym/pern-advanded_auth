@@ -1,40 +1,58 @@
 import { useState } from "react";
 import { LucideMenu , XIcon} from "lucide-react";
 
-function Menu() {
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div >
-      {/* Bouton Hamburger */}
-      <button
-        aria-label="Ouvrir/fermer le menu"
-        className="p-2"
-        onClick={() => setOpen(!open)}
-      >
-        {/* Icône SVG hamburger/croix */}
-        {open ? (
-          // Croix pour fermer
-          <XIcon className="size-5 text-primary" />
-          
-        ) : (
-          // Trois barres pour ouvrir
-          <LucideMenu className="size-5 text-primary" />
-
-        )}
-      </button>
-
-      {/* Menu déroulant conditionnel */}
-      {open && (
-        <div className="absolute left-0 top-full  shadow-lg z-50   text-black rounded-lg  bg-gray-300 border cursor-pointer  w-48">
-         
-          <a  href="/" className="block px-4 py-2 border-b  hover:bg-gray-400">Accueil</a>
-          <a href="/about" className="block px-4 py-2 border-b  hover:bg-gray-400">À propos</a>
-          <a href="/contact" className="block px-4 py-2  hover:bg-gray-400">Contact</a>
+function Sidebar({ isOpen, onClose }) {
+ 
+    return (
+        // Conteneur principal de la sidebar.
+        // Utilise des classes Tailwind pour la position fixe, la hauteur pleine, la largeur,
+        // l'arrière-plan, l'ombre et la transition pour l'animation d'entrée/sortie.
+        // La classe 'translate-x-full' cache la sidebar par défaut à droite,
+        // 'translate-x-0' la rend visible.
+        <div
+          className={`fixed top-70 left-0  w-64 bg-gray-300 shadow-lg transform ${
+            isOpen ? 'translate-x-0' : '-translate-x-full'
+          } transition-transform duration-300 ease-in-out z-50`}
+        >
+          <div className="p-4">
+            {/* Bouton de fermeture de la sidebar */}
+            <button
+              onClick={onClose}
+              className="text-gray-600 hover:text-gray-800 hover:text-3xl focus:outline-none text-2xl font-bold"
+              aria-label="Fermer la barre latérale"
+            >
+              &times; {/* Symbole 'x' pour fermer */}
+            </button>
+            {/* Titre de la sidebar */}
+            <h2 className="text-2xl font-semibold mt-4 text-gray-800"></h2>
+            {/* Liens de navigation de la sidebar */}
+            <nav className="mt-6 ">
+              <ul>
+                <li className="mb-4  hover:text-blue-600 hover:bg-gray-400">
+                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    Accueil
+                  </a>
+                </li>
+                <li className="mb-4  hover:text-blue-600 hover:bg-gray-400">
+                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    À propos
+                  </a>
+                </li>
+                <li className="mb-4  hover:text-blue-600 hover:bg-gray-400">
+                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    Services
+                  </a>
+                </li>
+                <li className="mb-4  hover:text-blue-600 hover:bg-gray-400">
+                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
         </div>
-      )}
-    </div>
-  );
+      );
 }
 
-export default Menu;
+export default Sidebar;

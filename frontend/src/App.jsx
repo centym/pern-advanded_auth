@@ -20,8 +20,8 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import LoadingSpinner from "./components/LoadingSpinner";
 import { useAuthStore } from "./store/authStore";
 import { useEffect, useState} from "react";
-
-//import i18n from './utils/i18n';
+import Sidebar from "./components/Menu";
+//import i18n from './utils/i18n';  1234567
 
 
 
@@ -72,11 +72,37 @@ function App() {
 		checkAuth(isAuthenticated);
 	}, [checkAuth]);
 
+	 // État pour gérer la visibilité de la sidebar
+	 const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+	 // Fonction pour basculer la visibilité de la sidebar
+	 const toggleSidebar = () => {
+	   setIsSidebarOpen(!isSidebarOpen);
+	 };
+   
+	 // Fonction pour fermer la sidebar
+	 const closeSidebar = () => {
+	   setIsSidebarOpen(false);
+	 };
+
+
+
 	if (isCheckingAuth) return <LoadingSpinner />;
+   
   
   return (
-    <div className="min-h-screen bg-base-200 transition-colors duration-300" data-theme={theme}>
-      <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+    <div className="min-h-screen bg-base-200 transition-colors duration-300  " data-theme={theme}>
+      <Navbar onMenuClick={toggleSidebar} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+	        {/* Rendu du composant Sidebar, en lui passant l'état et la fonction de fermeture */}
+			<Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+
+				{/* Overlay qui apparaît lorsque la sidebar est ouverte pour bloquer le contenu principal */}
+				{isSidebarOpen && (
+  				<div
+					className="fixed inset-0 bg-black opacity-50 z-40"
+					onClick={closeSidebar} // Ferme la sidebar si on clique sur l'overlay
+  				></div>
+				)}
 
       <Routes>
         <Route path="/product/:id" element={<ProtectedRoute><ProductPage /></ProtectedRoute>} />

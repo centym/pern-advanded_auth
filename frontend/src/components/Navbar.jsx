@@ -7,9 +7,9 @@ import { useAuthStore } from "../store/authStore";
 //import i18n from '../utils/i18n';
 import { useTranslation } from 'react-i18next';
 import { useState} from 'react';
-import Menu from "./Menu";
 
-function Navbar({ isLoggedIn, onLogout }) {
+
+function Navbar({ onMenuClick, isLoggedIn, onLogout }) {
   const { pathname } = useResolvedPath();
   const isHomePage = pathname === "/";
 
@@ -49,18 +49,33 @@ function Navbar({ isLoggedIn, onLogout }) {
 
   return (
     
-    <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/10 sticky top-0 z-50">
-      {/*<div className="max-w-7xl mx-auto"> */}
+    <div className="bg-base-100/80 backdrop-blur-lg border-b border-base-content/90 sticky top-0 z-50"> 
+     {/* <div className="max-w-7xl mx-auto"> */}
+
+    <nav className="p-4 shadow-md w-full flex items-center justify-between rounded-b-lg">
+            {/* Bouton pour ouvrir la sidebar */}
+            <button
+        onClick={onMenuClick}
+        className=" focus:outline-none text-2xl"
+        aria-label="Ouvrir le menu"
+      >
+        &#9776; {/* Symbole hamburger */}
+      </button>
+      {/* Titre de l'application/site */}
       
+      {/* Espace réservé pour d'autres éléments de la navbar si nécessaire */}
+      <div className="w-8"></div> {/* Pour centrer le titre si pas d'autres éléments à droite */}
+
+
       <div className="w-full  mx-auto ">
      
-        <div className="navbar px-4 min-h-[4rem] justify-between ">
+        <div className="navbar  px-4 min-h-[4rem] justify-between ">
         
           {/* LOGO */}
           <div className="flex lg:flex-none s">
-            {/* Hamburger Menu Icon */}
+            {/* Hamburger Menu Icon 
             <Menu className="size-3 text-primary"/>
-
+              */}
             <Link to="/" className="hover:opacity-70 transition-opacity">
               <div className="flex items-center gap-2 ">
                 
@@ -68,7 +83,7 @@ function Navbar({ isLoggedIn, onLogout }) {
                   className="font-semibold font-mono tracking-widest  
                     bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
                 >
-                  Dashboard - React
+                  React
                 </span>
               </div>
             </Link>
@@ -151,6 +166,7 @@ function Navbar({ isLoggedIn, onLogout }) {
           </div>
         </div>
       </div>
+    </nav>
     </div>
   );
 }

@@ -13,7 +13,7 @@ function ProductHomePage() {
   }, [fetchProducts]);
 
   return (
-    <main className="max-w-6xl mx-auto px-4 py-8 ">
+    <div className="max-w-6xl mx-auto px-4 py-8 z-0">
       <div className="flex justify-between items-center mb-8">
         <button
           className="btn btn-primary"
@@ -50,13 +50,13 @@ function ProductHomePage() {
           <div className="loading loading-spinner loading-lg" />
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
       )}
-    </main>
+    </div>
   );
 }
 export default ProductHomePage;
