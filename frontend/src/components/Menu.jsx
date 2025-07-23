@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { LucideMenu , XIcon} from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 function Sidebar({ isOpen, onClose }) {
- 
+    const navigate = useNavigate(); // Initialize useNavigate
     return (
         // Conteneur principal de la sidebar.
         // Utilise des classes Tailwind pour la position fixe, la hauteur pleine, la largeur,
@@ -10,11 +9,11 @@ function Sidebar({ isOpen, onClose }) {
         // La classe 'translate-x-full' cache la sidebar par défaut à droite,
         // 'translate-x-0' la rend visible.
         <div
-          className={`fixed top-70 left-0  w-64 bg-gray-300 shadow-lg transform ${
+          className={`fixed border-4 border-blue-500 top-70 left-0  w-64 bg-gray-300 shadow-lg transform ${
             isOpen ? 'translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out z-50`}
+          }  transition-transform duration-1000 ease-in-out z-50`}
         >
-          <div className="p-4">
+          <div className="p-4 text-lg text-gray-700 hover:text-blue-600 transition-colors ">
             {/* Bouton de fermeture de la sidebar */}
             <button
               onClick={onClose}
@@ -26,32 +25,26 @@ function Sidebar({ isOpen, onClose }) {
             {/* Titre de la sidebar */}
             <h2 className="text-2xl font-semibold mt-4 text-gray-800"></h2>
             {/* Liens de navigation de la sidebar */}
-            <nav className="mt-6 ">
-              <ul>
-                <li className="mb-4 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
-                  <Link to="/" onClick={onClose} className="hover:opacity-70 transition-opacity">
-                    <div className="flex items-center gap-2 ">
-                        <span
-                            className="font-semibold font-mono tracking-widest  
-                                    bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
-                        >
+            <nav >
+              <ul className="p-2 ">
+                <li className="m-2 p-2  border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400  text-gray-700 transition-colors duration-1000">
+                  <Link to="/" onClick={onClose} >
                             React
-                        </span>
-                    </div>
                   </Link>
                 </li>
-                <li className="mb-4 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
-                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                <li className="m-2 p-2 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
+                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-1000">
                     À propos
                   </a>
                 </li>
-                <li className="mb-4 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
-                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                <li className="m-2 p-2 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
+                  <button className="cursor-pointer text-lg text-gray-700 hover:text-blue-600 transition-colors duration-1000"
+                  onClick={() => { onClose(); navigate("/product/producthome"); }}>
                     Services
-                  </a>
+                  </button>
                 </li>
-                <li className="mb-4 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
-                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-200">
+                <li className="m-2 p-2 border-t-2 border-b-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
+                  <a href="#" className="text-lg text-gray-700 hover:text-blue-600 transition-colors duration-1000">
                     Contact
                   </a>
                 </li>

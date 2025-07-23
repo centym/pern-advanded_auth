@@ -16,6 +16,7 @@ import EmailVerificationPage from "./pages/EmailVerificationPage";
 import DashboardPage from "./pages/DashboardPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import WelcomePage from "./pages/WelcomePage";
 
 import LoadingSpinner from "./components/LoadingSpinner";
 import { useAuthStore } from "./store/authStore";
@@ -91,7 +92,7 @@ function App() {
    
   
   return (
-    <div className="min-h-screen bg-base-200 transition-colors duration-300  " data-theme={theme}>
+    <div className="min-h-screen bg-base-200 transition-colors duration-2000  " data-theme={theme}>
       <Navbar onMenuClick={toggleSidebar} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 	        {/* Rendu du composant Sidebar, en lui passant l'état et la fonction de fermeture */}
 			<Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
@@ -107,6 +108,7 @@ function App() {
       <Routes>
         <Route path="/product/:id" element={<ProtectedRoute><ProductPage /></ProtectedRoute>} />
         <Route path="/product/producthome" element={<ProtectedRoute><ProductHomePage /></ProtectedRoute>} />
+        <Route path="/product/welcomepage" element={<ProtectedRoute><WelcomePage /></ProtectedRoute>} />
         <Route
 					path='/'
 					element={
