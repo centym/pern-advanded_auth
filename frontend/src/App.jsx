@@ -22,6 +22,7 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import { useAuthStore } from "./store/authStore";
 import { useEffect, useState} from "react";
 import Sidebar from "./components/Menu";
+import {version} from "../package.json"; // Import the version from package.json
 //import i18n from './utils/i18n';  1234567
 
 
@@ -92,7 +93,7 @@ function App() {
    
   
   return (
-    <div className="min-h-screen bg-base-200 transition-colors duration-2000  " data-theme={theme}>
+    <div className=" min-h-screen bg-base-200 transition-colors duration-2000  " data-theme={theme}>
       <Navbar onMenuClick={toggleSidebar} isLoggedIn={isLoggedIn} onLogout={handleLogout} />
 	        {/* Rendu du composant Sidebar, en lui passant l'état et la fonction de fermeture */}
 			<Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
@@ -105,6 +106,7 @@ function App() {
   				></div>
 				)}
 
+	 
       <Routes>
         <Route path="/product/:id" element={<ProtectedRoute><ProductPage /></ProtectedRoute>} />
         <Route path="/product/producthome" element={<ProtectedRoute><ProductHomePage /></ProtectedRoute>} />
@@ -156,6 +158,14 @@ function App() {
       </Routes>
 
       <Toaster />
+	  
+	  <div class=" items-center my-6 bottom-0">
+  		<hr class="mt-52 border-t border-gray-300" />
+		  <span className="p-2 text-xs text-gray-400 dark:text-gray-500">
+               Version : {version}
+      	</span> 
+  
+	  </div>
     </div>
   );
 }

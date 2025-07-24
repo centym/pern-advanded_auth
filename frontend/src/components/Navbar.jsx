@@ -7,6 +7,7 @@ import { useAuthStore } from "../store/authStore";
 //import i18n from '../utils/i18n';
 import { useTranslation } from 'react-i18next';
 import { useState} from 'react';
+import { version } from "../../package.json"; // Import the version from package.json
 
 
 function Navbar({ onMenuClick, isLoggedIn, onLogout }) {
@@ -53,6 +54,7 @@ function Navbar({ onMenuClick, isLoggedIn, onLogout }) {
      {/* <div className="max-w-7xl mx-auto"> */}
 
     <nav className="p-4 shadow-md w-full flex items-center justify-between rounded-b-lg">
+    
             {/* Bouton pour ouvrir la sidebar */}
             <button
         onClick={onMenuClick}
