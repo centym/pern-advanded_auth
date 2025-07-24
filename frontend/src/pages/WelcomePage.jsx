@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 function WelcomePage() {
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 z-0">
+    <div className="max-w-6xl mx-auto justify-items-center">
         <div className="flex justify-between items-center mb-8">
  
             <div className="flex flex-col items-center justify-center h-96 space-y-4">
