@@ -159,12 +159,12 @@ function App() {
 
       <Toaster />
 	  
-	  <div class=" items-center my-6 bottom-0">
-  		<hr class="mt-24 border-t border-gray-300" />
+	  <div className=" items-center my-6 bottom-0">
+  		<hr className="mt-24 border-t border-gray-300" />
 		  <span className="p-2 text-xs text-gray-400 dark:text-gray-500">
                Version : {version}
       	</span> 
-  
+		  <hr className="mt-5 border-t border-gray-300" />
 	  </div>
     </div>
   );
