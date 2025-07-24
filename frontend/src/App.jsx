@@ -160,7 +160,7 @@ function App() {
       <Toaster />
 	  
 	  <div class=" items-center my-6 bottom-0">
-  		<hr class="mt-36 border-t border-gray-300" />
+  		<hr class="mt-32 border-t border-gray-300" />
 		  <span className="p-2 text-xs text-gray-400 dark:text-gray-500">
                Version : {version}
       	</span> 
