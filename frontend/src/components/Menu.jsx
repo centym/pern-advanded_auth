@@ -38,7 +38,7 @@ function Sidebar({ isOpen, onClose }) {
                   </a>
                 </li>
                 <li className="m-2 p-2 border-t-2 border-blue-500 hover:text-blue-600 hover:bg-gray-400">
-                  <button className="cursor-pointer text-lg text-gray-700 hover:text-blue-600 transition-colors duration-1000"
+                  <button className="cursor-pointer w-full text-left text-lg text-gray-700 hover:text-blue-600 transition-colors duration-1000"
                   onClick={() => { onClose(); navigate("/product/producthome"); }}>
                     Services
                   </button>
